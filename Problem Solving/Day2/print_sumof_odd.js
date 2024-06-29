@@ -24,28 +24,28 @@ for(i=0;i<=x.length;i++){
 //Write a program to print the dufference between even sum & odd sum
 
 
-let num="163382"
+let num1="163382"
 // num=prompt("enter a number:")
 let evenSum=0
 let oddSum=0
-let diff;
-for(i=0;i<=num.length;i++){
-    if(num[i]%2==1){
-        oddSum=oddSum+Number(num[i])
+let difference;
+for(i=0;i<=num1.length;i++){
+    if(num1[i]%2==1){
+        oddSum=oddSum+Number(num1[i])
         // console.log(oddSum)
     }
-    if(num[i]%2==0){
-        evenSum=evenSum+Number(num[i])
+    if(num1[i]%2==0){
+        evenSum=evenSum+Number(num1[i])
         // console.log(evenSum)
     }
 }
 console.log(evenSum,oddSum)
 if(evenSum>oddSum){
-    diff=evenSum-oddSum;
-    console.log(diff)
+    difference=evenSum-oddSum;
+    console.log(difference)
 }else{
-    diff=oddSum-evenSum;
-    console.log(diff)
+    difference=oddSum-evenSum;
+    console.log(difference)
 }
 
 
@@ -85,24 +85,24 @@ input: Enter a number: 123
 output: Odd sum is greater*/
 
 
-let num="123"
+let num2="123"
 // num=prompt("enter a number:")
-let evenSum=0
-let oddSum=0
+let even_sum=0
+let odd_sum=0
 let diff;
-for(i=0;i<num.length;i++){
-    let x=Number(num[i])
+for(i=0;i<num2.length;i++){
+    let x=Number(num2[i])
     if(x%2==1){
-        oddSum=oddSum+x
+        odd_sum=odd_sum+x
         // console.log(oddSum)
     }
     else{
-        evenSum=evenSum+x
+        even_sum=even_sum+x
         // console.log(evenSum)
     }
 }
-console.log(evenSum,oddSum)
-if(evenSum>oddSum){
+console.log(even_sum,odd_sum)
+if(even_sum>odd_sum){
     console.log("evensum is greater")
 }else{
     console.log("oddsum is greater")
