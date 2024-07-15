@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .id-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+        .id-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+        .id-card h2 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        .id-card p {
+            margin: 5px 0;
+            color: #666;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button onclick="generateIDCard()">Generate ID Card</button>
+    </div>
+
+    <script>
+        function createIDCard(person) {
+            const card = document.createElement('div');
+            card.className = 'id-card';
+
+            const photo = document.createElement('img');
+            photo.src = person.photoUrl;
+            photo.alt = 'ID Photo';
+            card.appendChild(photo);
+
+            const name = document.createElement('h2');
+            name.textContent = person.name;
+            card.appendChild(name);
+
+            const idNumber = document.createElement('p');
+            idNumber.textContent = `ID: ${person.idNumber}`;
+            card.appendChild(idNumber);
+
+            const info = document.createElement('p');
+            info.textContent = `${person.position} | ${person.department}`;
+            card.appendChild(info);
+
+            return card;
+        }
+
+        function generateIDCard() {
+            const person = {
+                name: 'Jane Smith',
+                idNumber: '12345',
+                position: 'Software Developer',
+                department: 'IT',
+                photoUrl: './Images/team1.jpg'
+            };
+
+            const idCard = createIDCard(person);
+            
+            const app = document.getElementById('app');
+            app.innerHTML = ''; // Clear previous content
+            app.appendChild(idCard);
+
+            const regenerateButton = document.createElement('button');
+            regenerateButton.textContent = 'Generate New ID Card';
+            regenerateButton.onclick = generateIDCard;
+            app.appendChild(regenerateButton);
+        }
+    </script>
+</body>
+</html>
