@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even Odd With Input</title>
+</head>
+<body>
+    <form>
+      <input type="number" id="num" placeholder="Enter a number">
+      <button id="check">Check</button>
+      <p id="result"></p>
+    </form>
+    <script>
+      const numInput = document.getElementById('num');
+      const checkbtn = document.getElementById('check');
+      const result = document.getElementById('result');
+
+      checkbtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent form submission
+        const num = parseInt(numInput.value);
+        if (num % 2 === 0) {
+          result.innerText = `The number ${num} is even`;
+        } else {
+          result.innerText = `The number ${num} is odd`;
+        }
+      });
+    </script>
+  </body>
+</html>

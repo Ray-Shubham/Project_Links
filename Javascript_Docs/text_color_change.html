@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Text Color</title>
+</head>
+<body>
+    <p id="text" style="font-size: 20px;">Welcome to Javascript</p>
+    <button id="click-me">Click Me</button>
+
+    <script>
+      const textElement = document.getElementById('text');
+      const clickMeButton = document.getElementById('click-me');
+
+      clickMeButton.addEventListener('click', () => {
+        const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+        textElement.style.color = randomColor;
+      });
+    </script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Color Change</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        #colorText {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p id="colorText">Welcome to Javascript!</p>
+        <button onclick="changeColor()">Click me</button>
+    </div>
+
+    <script>
+        function changeColor() {
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            document.getElementById("colorText").style.color = "#" + randomColor;
+        }
+    </script>
+</body>
+</html> -->

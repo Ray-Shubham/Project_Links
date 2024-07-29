@@ -1,0 +1,190 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card</title>
+    <style>
+        .id-card {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #eee;
+            margin: 0 auto;
+        }
+        .name, .id-number, .expiration {
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="idCard" class="id-card">
+        <div class="photo"></div>
+        <h2 class="name"></h2>
+        <p class="id-number"></p>
+        <p class="expiration"></p>
+    </div>
+
+    <script>
+        // JavaScript code will go here
+        // Function to create and populate the ID card
+function createIDCard(name, idNumber, expirationDate) {
+    const idCard = document.getElementById('idCard');
+    
+    // Set name
+    const nameElement = idCard.querySelector('.name');
+    nameElement.textContent = name;
+    
+    // Set ID number
+    const idNumberElement = idCard.querySelector('.id-number');
+    idNumberElement.textContent = `ID: ${idNumber}`;
+    
+    // Set expiration date
+    const expirationElement = idCard.querySelector('.expiration');
+    expirationElement.textContent = `Expires: ${expirationDate}`;
+    
+    // Optional: Add a photo
+    const photoElement = idCard.querySelector('.photo');
+    photoElement.style.backgroundImage = 'url(./Images/team1.jpg)';
+}
+
+// Example usage
+createIDCard('John Doe', '12345678', '2025-12-31');
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Card</title>
+  <style>
+    /* CSS styles for the ID card */
+    body {
+      font-family: 'Verdana', sans-serif;
+      background-color: transparent;
+    }
+
+    .id-card-holder {
+      width: 225px;
+      padding: 4px;
+      margin: 0 auto;
+      background-color: #1f1f1f;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .id-card {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 1.5px 0px #b9b9b9;
+    }
+
+    .id-card img {
+      margin: 0 auto;
+    }
+
+    .header img {
+      width: 100px;
+      margin-top: 15px;
+    }
+
+    .photo img {
+      width: 80px;
+      margin-top: 15px;
+    }
+
+    h2 {
+      font-size: 15px;
+      margin: 5px 0;
+    }
+
+    h3 {
+      font-size: 12px;
+      margin: 2.5px 0;
+      font-weight: 300;
+    }
+
+    .qr-code img {
+      width: 50px;
+    }
+
+    p {
+      font-size: 5px;
+      margin: 2px;
+    }
+
+    @media print {
+      .noprint {
+        display: none;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .id-card {
+        width: 100%;
+        height: 100%;
+        border: none;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="id-card-holder">
+    <div class="id-card">
+      <div class="header">
+        <img src="https://is4-ssl.mzstatic.com/image/thumb/Purple118/v4/62/cd/f5/62cdf5b2-a731-76ca-aa69-fe82c8a09d94/source/512x512bb.jpg" alt="Logo">
+      </div>
+      <div class="photo">
+        <img id="photo-img" src="./Images/team1.jpg" alt="Photograph">
+      </div>
+      <h2>Prabsaran Singh</h2>
+      <!-- <div class="qr-code">
+        <img src="https://via.placeholder.com/50" alt="QR Code">
+      </div> -->
+      <h3>Student</h3>
+      <h3>BT19GCS121</h3>
+      <hr>
+      <p><strong>NIIT University</strong> Neemrana, NH-8 Delhi-Jaipur highway</p>
+      <p>District Alwar, Rajasthan <strong>301705</strong></p>
+      <p>Ph: 01494-660600, 7073222393</p>
+    </div>
+  </div>
+
+  <input type="file" id="photo-input" class="noprint" accept="image/*">
+  <button onclick="window.print()" class="noprint">Print ID Card</button>
+
+  <script>
+    const fileInput = document.getElementById('photo-input');
+    const photoImg = document.getElementById('photo-img');
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        photoImg.src = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>

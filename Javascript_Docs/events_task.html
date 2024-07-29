@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Demo - Table Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input, select, button {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Storage Demo - Table Display</h1>
+    
+    <form id="userForm">
+        <input type="text" id="name" placeholder="Name" required><br>
+        <input type="email" id="email" placeholder="Email" required><br>
+        <select id="storageType">
+            <option value="local">Local Storage</option>
+            <option value="session">Session Storage</option>
+        </select><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <table id="localDataTable">
+        <caption>Local Storage Data</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <table id="sessionDataTable">
+        <caption>Session Storage Data</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const form = document.getElementById('userForm');
+        const localDataTable = document.getElementById('localDataTable').getElementsByTagName('tbody')[0];
+        const sessionDataTable = document.getElementById('sessionDataTable').getElementsByTagName('tbody')[0];
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const storageType = document.getElementById('storageType').value;
+
+            const timestamp = Date.now();
+            const data = { name, email, timestamp };
+
+            if (storageType === 'local') {
+                localStorage.setItem(timestamp, JSON.stringify(data));
+            } else {
+                sessionStorage.setItem(timestamp, JSON.stringify(data));
+            }
+
+            displayData();
+            form.reset();
+        });
+
+        function displayData() {
+            localDataTable.innerHTML = '';
+            sessionDataTable.innerHTML = '';
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = JSON.parse(localStorage.getItem(key));
+                addRowToTable(localDataTable, value);
+            }
+
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                const value = JSON.parse(sessionStorage.getItem(key));
+                addRowToTable(sessionDataTable, value);
+            }
+        }
+
+        function addRowToTable(table, data) {
+            const row = table.insertRow();
+            row.insertCell(0).textContent = data.name;
+            row.insertCell(1).textContent = data.email;
+            row.insertCell(2).textContent = new Date(data.timestamp).toLocaleString();
+        }
+
+        // Initial display of data
+        displayData();
+    </script>
+</body>
+</html>
